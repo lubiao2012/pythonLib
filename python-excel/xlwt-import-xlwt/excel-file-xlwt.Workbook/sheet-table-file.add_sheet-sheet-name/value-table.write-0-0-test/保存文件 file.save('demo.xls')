@@ -1,0 +1,51 @@
+write to excel
+
+
+//导入xlwt
+import xlwt
+//新建excel文件
+file = xlwt.Workbook()
+//新建一个sheet
+table=file.add_sheet('sheet name')
+//写入数据,(行，类，value)
+table.write(0,0,'test')
+//保存文件
+file.save('demo.xls')
+
+read from excel
+
+//导入xlrd
+import xrld
+//打开excel
+data =xlrd.open_workbook('demo.xls')
+//查看文件中包含的sheet的名称
+data.sheet_names()
+//得到第一个工作表,或者通过索引顺序或者通过工作表名称
+table = data.sheet()[0]
+table = data.sheet_by_index(0)
+table = data.sheet_by_name(u'sheet1')
+//获取行数和列数
+nrows = table.nrows
+ncols = table.ncols
+//获取正行或者整列的值（数组)
+table.row_tables(i)
+table.row_tables(i)
+//循环行，得到索引的列表
+for rownum in range(table.nrows):
+    print table.row_values(rownum)
+//单元格
+cell_A1 = table.cell(0,0).value
+cell_C4 = table.cell(2,3).value
+//分别使用行列索引
+cell_A1 = table.row(0)[0].value
+cell_A2 = table.col(1)[0].value
+//简单的写入
+row= 0
+col = 0
+ctype = 1 //类型0 empty,1 string ,2 number , 3 date 4 boolean 5error
+value = 'wangrun'
+xf = 0
+table.put_cell(row , col , ctype , value , xf)
+table.cell(0,0)          //文本 u'wangrun'
+table.cell(0,0).value    //'wangrun'
+
