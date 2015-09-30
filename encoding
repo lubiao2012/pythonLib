@@ -1,0 +1,30 @@
+#-*-encoding:utf-8-*-
+"""
+info : 查看文件或者网页的编码
+Data : 2015/9/30
+"""
+
+import urllib
+import chardet 
+
+def convert_page_2_utf8():
+    """查看并转换网页的编码"""
+    rawdata = urllib.urlopen('http://www.google.cn/').read()
+    encoding = chardet.detect(rawdata)
+    if encoding == None:
+        encoding = 'utf8'
+    if encoding.lower() in 'gb2312':
+        rawdata = rawdata.decode('gbk', 'ignore').encode('utf8')
+    else :
+        rawdata = rawdata.encode('utf8')
+    return rawdata
+    
+def find_file_encoding():
+    """查看并转化文件的编码"""
+    tt=open('c:\\111.txt','rb')
+    ff=tt.readline()
+    #这里试着换成read(5)也可以，但是换成readlines()后报错
+    enc=chardet.detect(ff)
+    print enc['encoding']
+    tt.close()
+    
