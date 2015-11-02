@@ -48,13 +48,11 @@ if __name__ == "__main__":
 #     print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 
 #  conn.select_db('python')
-# 
-#    count=cur.execute('select * from test')
-#    print 'there has %s rows record' % count
-#result
-#    result=cur.fetchone()
-#    print result
-#    print 'ID: %s info %s' % result
+count=cur.execute('select * from test')
+print 'there has %s rows record' % count
+result=cur.fetchone()
+print result
+print 'ID: %s info %s' % result
 # 
 #    results=cur.fetchmany(5)
 #    for r in results:
